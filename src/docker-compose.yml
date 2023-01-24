@@ -1,15 +1,19 @@
 version: '3.4'
 
 services:
-  tcc.web.apigateways:
-    image: ${DOCKER_REGISTRY-}tccwebapigateways
+  sqldata:
+    image: mcr.microsoft.com/mssql/server:2019-latest 
+
+  web-apigateways:
+    image: ${DOCKER_REGISTRY-}tcc.web.apigateways
     build:
       context: .
       dockerfile: ApiGateways/Tcc.Web.ApiGateways/Dockerfile
 
-  identity.api:
-    image: ${DOCKER_REGISTRY-}identityapi
+  identity-api:
+    image: ${DOCKER_REGISTRY-}identity.api
     build:
       context: .
       dockerfile: Services/Identity/Identity.Api/Dockerfile
-
+    depends_on:
+      - sqldata

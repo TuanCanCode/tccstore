@@ -1,7 +1,16 @@
 version: '3.4'
 
 services:
-  tcc.web.apigateways:
+  sqldata:
+    environment:
+      - SA_PASSWORD=Pass@word
+      - ACCEPT_EULA=Y
+    ports:
+      - "5433:1433"
+    volumes:
+      - tcc-sqldata:/var/opt/mssql
+
+  web-apigateways:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
@@ -11,7 +20,7 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
-  identity.api:
+  identity-api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
@@ -21,3 +30,6 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+volumes:
+  tcc-sqldata:
+    external: false
