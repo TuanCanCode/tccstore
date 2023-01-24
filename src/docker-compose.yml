@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  tcc.web.apigateways:
+    image: ${DOCKER_REGISTRY-}tccwebapigateways
+    build:
+      context: .
+      dockerfile: ApiGateways/Tcc.Web.ApiGateways/Dockerfile
+
+  identity.api:
+    image: ${DOCKER_REGISTRY-}identityapi
+    build:
+      context: .
+      dockerfile: Services/Identity/Identity.Api/Dockerfile
+

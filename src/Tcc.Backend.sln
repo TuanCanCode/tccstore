@@ -5,17 +5,19 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateways", "ApiGateways", "{063088F0-0AD7-403A-A081-74B81614483B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tcc.Web.ApiGateways", "ApiGateways\Tcc.Web.ApiGateways\Tcc.Web.ApiGateways.csproj", "{58A6EED8-0C90-4183-B612-81FFBE32B179}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tcc.Web.ApiGateways", "ApiGateways\Tcc.Web.ApiGateways\Tcc.Web.ApiGateways.csproj", "{58A6EED8-0C90-4183-B612-81FFBE32B179}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{9CF90BCA-E384-4E73-A74D-E479C4F8FBC8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{C3AF16D9-05A2-44B7-944D-BCF4F4B1BC51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Api", "Services\Identity\Identity.Api\Identity.Api.csproj", "{1622DA81-CD66-4692-81BD-AB6873CD9E30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Api", "Services\Identity\Identity.Api\Identity.Api.csproj", "{1622DA81-CD66-4692-81BD-AB6873CD9E30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.FunctionalTests", "Services\Identity\Identity.FunctionalTests\Identity.FunctionalTests.csproj", "{21A6C4FB-1E63-4FF6-AD3E-BA1E847639F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.FunctionalTests", "Services\Identity\Identity.FunctionalTests\Identity.FunctionalTests.csproj", "{21A6C4FB-1E63-4FF6-AD3E-BA1E847639F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.UnitTests", "Services\Identity\Identity.UnitTests\Identity.UnitTests.csproj", "{EA932813-6CCB-4A98-BF5C-3AC49601AC9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.UnitTests", "Services\Identity\Identity.UnitTests\Identity.UnitTests.csproj", "{EA932813-6CCB-4A98-BF5C-3AC49601AC9D}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{F7BACF3F-EB10-43B6-99CD-FEA68888ADEB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{EA932813-6CCB-4A98-BF5C-3AC49601AC9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA932813-6CCB-4A98-BF5C-3AC49601AC9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA932813-6CCB-4A98-BF5C-3AC49601AC9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7BACF3F-EB10-43B6-99CD-FEA68888ADEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7BACF3F-EB10-43B6-99CD-FEA68888ADEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7BACF3F-EB10-43B6-99CD-FEA68888ADEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7BACF3F-EB10-43B6-99CD-FEA68888ADEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
