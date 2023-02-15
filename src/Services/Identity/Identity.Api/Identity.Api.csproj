@@ -27,10 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="Migrations\" />
-    <Folder Include="Contants\" />
-    <Folder Include="Models\" />
     <Folder Include="Enums\" />
     <Folder Include="Extensions\" />
   </ItemGroup>

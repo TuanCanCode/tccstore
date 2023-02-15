@@ -1,5 +1,6 @@
 using System.Reflection;
 using Identity.Api.Data;
+using Identity.Api.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,7 +22,7 @@ namespace Identity.Api
                         sqlOptions.EnableRetryOnFailure(maxRetryCount: 15, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
                     }));
 
-            builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+            builder.Services.AddIdentity<UserEntity, RoleEntity>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
@@ -29,6 +30,8 @@ namespace Identity.Api
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.AddConfigServices();
 
             var app = builder.Build();
 

@@ -2,7 +2,7 @@
 
 namespace Identity.Api.Entities
 {
-    public class RoleEntity : IdentityRole<long>
-    {
-    }
+    //public class UserRoleEntity : IdentityUserRole<long>
+    //{
+    //}
 }

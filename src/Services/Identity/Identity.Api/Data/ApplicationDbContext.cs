@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Identity.Api.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<UserEntity, RoleEntity, long>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

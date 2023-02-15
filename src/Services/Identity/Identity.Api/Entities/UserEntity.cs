@@ -2,7 +2,8 @@
 
 namespace Identity.Api.Entities
 {
-    public class UserEntity : IdentityUser
+    public class UserEntity : IdentityUser<long>
     {
+
     }
 }
