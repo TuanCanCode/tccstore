@@ -3,6 +3,7 @@ using Identity.Api.Entities;
 using Identity.Api.Models.Account;
 using Identity.Api.Services.Contracts;
 using Microsoft.AspNetCore.Identity;
+using Tcc.Core.Exceptions;
 
 namespace Identity.Api.Services
 {
@@ -34,7 +35,7 @@ namespace Identity.Api.Services
             }
             else
             {
-                throw new BadHttpRequestException(result.Errors.First().Description);
+                throw new BadRequestException(result.Errors.First().Description);
             }
 
             return user;

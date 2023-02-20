@@ -1,8 +1,10 @@
 using System.Reflection;
+using AutoWrapper;
 using Identity.Api.Data;
 using Identity.Api.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Tcc.Core.Middlewares;
 
 namespace Identity.Api
 {
@@ -39,15 +41,21 @@ namespace Identity.Api
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
-                app.UseSwaggerUI();
+                app.UseSwaggerUI(options =>
+                {
+                    options.DisplayRequestDuration();
+                });
             }
+
+            app.UseApiResponseAndExceptionWrapper();
 
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
 
-
             app.MapControllers();
+
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
 
             app.Run();
         }

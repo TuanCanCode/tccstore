@@ -3,6 +3,7 @@ using Identity.Api.Entities;
 using Identity.Api.Models.Account;
 using Identity.Api.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
+using Tcc.Core.Exceptions;
 
 namespace Identity.Api.Controllers
 {
@@ -13,6 +14,7 @@ namespace Identity.Api.Controllers
     public class AccountController : ControllerBase
     {
         private readonly IAccountService _accountService;
+
         /// <summary>
         /// AccountController
         /// </summary>
@@ -26,7 +28,7 @@ namespace Identity.Api.Controllers
         [HttpPost("register")]
         public async Task<UserEntity> Register([FromBody] RegisterAccountInputModel model)
         {
-            if (model == null) throw new BadHttpRequestException(ErrorMessages.InvalidRequest);
+            if (model == null) throw new BadRequestException(ErrorMessages.InvalidRequest);
             return await _accountService.RegisterAsync(model);
         }
     }
