@@ -25,11 +25,30 @@ namespace Identity.Api.Controllers
             _accountService = accountService;
         }
 
+        /// <summary>
+        /// Register
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        /// <exception cref="BadRequestException"></exception>
         [HttpPost("register")]
         public async Task<UserEntity> Register([FromBody] RegisterAccountInputModel model)
         {
             if (model == null) throw new BadRequestException(ErrorMessages.InvalidRequest);
             return await _accountService.RegisterAsync(model);
+        }
+
+        /// <summary>
+        /// Login
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        /// <exception cref="BadRequestException"></exception>
+        [HttpPost("login")]
+        public async Task<LoginOutputModel> Login([FromBody] LoginInputModel model)
+        {
+            if (model == null) throw new BadRequestException(ErrorMessages.InvalidRequest);
+            return await _accountService.Login(model);
         }
     }
 }

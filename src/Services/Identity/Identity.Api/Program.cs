@@ -34,6 +34,7 @@ namespace Identity.Api
             builder.Services.AddSwaggerGen();
 
             builder.AddConfigServices();
+            builder.AddConfigurationServices();
 
             var app = builder.Build();
 

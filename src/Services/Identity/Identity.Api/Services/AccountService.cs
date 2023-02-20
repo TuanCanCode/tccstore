@@ -1,7 +1,10 @@
 ﻿using System.Text.Encodings.Web;
+using Identity.Api.Configurations;
+using Identity.Api.Constants;
 using Identity.Api.Entities;
 using Identity.Api.Models.Account;
 using Identity.Api.Services.Contracts;
+using Identity.Api.Utils;
 using Microsoft.AspNetCore.Identity;
 using Tcc.Core.Exceptions;
 
@@ -11,14 +14,20 @@ namespace Identity.Api.Services
     {
         private readonly ILogger<AccountService> _logger;
         private readonly UserManager<UserEntity> _userManager;
+        private readonly SignInManager<UserEntity> _signInManager;
+        private readonly JwtAuthenticationTokenConfiguration _jwtAuthenticationTokenConfiguration;
 
         public AccountService(
+            ILogger<AccountService> logger,
             UserManager<UserEntity> userManager,
-            ILogger<AccountService> logger
-        )
+            SignInManager<UserEntity> signInManager, 
+            JwtAuthenticationTokenConfiguration jwtAuthenticationTokenConfiguration
+            )
         {
-            _userManager = userManager;
             _logger = logger;
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _jwtAuthenticationTokenConfiguration = jwtAuthenticationTokenConfiguration;
         }
 
         public async Task<UserEntity> RegisterAsync(RegisterAccountInputModel model)
@@ -39,6 +48,39 @@ namespace Identity.Api.Services
             }
 
             return user;
+        }
+
+        public async Task<LoginOutputModel> Login(LoginInputModel model)
+        {
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null)
+            {
+                throw new BadRequestException(ErrorMessages.User_NotFound);
+            }
+
+            var loginResult = await _signInManager.CheckPasswordSignInAsync(user, model.Password, true);
+            if (loginResult.Succeeded)
+            {
+                var claim = await _userManager.GetClaimsAsync(user);
+                return new LoginOutputModel()
+                {
+                    AccessToken = JwtTokenHelper.GenerateAccessToken(claim, _jwtAuthenticationTokenConfiguration)
+                };
+            }
+
+            //if (result.RequiresTwoFactor)
+            //{
+
+            //}
+
+            if (loginResult.IsLockedOut)
+            {
+                throw new ForbiddenException(ErrorMessages.AccountLocked);
+            }
+            else
+            {
+                throw new ForbiddenException(ErrorMessages.InvalidLoginAttempt);
+            }
         }
     }
 }
